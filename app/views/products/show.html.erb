@@ -18,7 +18,7 @@
             <%= "#{number_to_currency(@product.current_price, locale: :en)}" %>
           </h3>
           <p>
-            <%= link_to "Buy Now", product_orderitems_path(@product), method: :post, class: "btn btn-sm btn-primary btn-block" %>
+            <%= link_to "Buy Now", orderitems_path(product: @product), method: :post, class: "btn btn-sm btn-primary btn-block" %>
           </p>
         </div>
       </div>

@@ -10,16 +10,18 @@ class OrderitemsController < ApplicationController
 
     @orderitem = @order.orderitems.new       
 
-    @product = Product.find(params[:product_id])
+    @product = Product.find(params[:product])
     @orderitem.product = @product
     
     @orderitem.price = @product.current_price
     @orderitem.quantity = 1
     @orderitem.save
 
-    redirect_to products_path
+    redirect_to orderitems_path
   end
 
   def index
+    @order = current_user.orders.find_by(paid: false, dispatched: false)
+    @orderitems = @order.orderitems
   end
 end
