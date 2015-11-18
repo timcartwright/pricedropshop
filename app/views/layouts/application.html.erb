@@ -7,16 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render "common/header" %>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
+    <div class="flash_messages">
+      <%= flash_tag(notice, "notice") %>
+      <%= flash_tag(alert, "alert") %>
     </div>
+    
+    <%= yield %>
   </div>
 
-<%= yield %>
 
 </body>
 </html>

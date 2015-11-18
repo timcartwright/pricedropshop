@@ -48,6 +48,7 @@ group :development do
   gem 'bootswatch-rails'
   gem 'devise'
   gem "paperclip", "~> 4.3"
+  gem 'simple_form'
 
 end
 
