@@ -47,6 +47,7 @@ group :development do
   gem 'bootstrap-sass', '~> 3.3.5'
   gem 'bootswatch-rails'
   gem 'devise'
+  gem "paperclip", "~> 4.3"
 
 end
 
