@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 
+  user_id: 
+  price: 9.99
+  paid: false
+  dispatched: false
+
+two:
+  product_id: 
+  user_id: 
+  price: 9.99
+  paid: false
+  dispatched: false
