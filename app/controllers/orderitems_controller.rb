@@ -1,23 +1,15 @@
-class OrdersController < ApplicationController
-  def index
-  end
-
+class OrderitemsController < ApplicationController
   def create
     # debugger
     @product = Product.find(params[:product_id])
     @orderitem = @product.orderitems.new
     @orderitem.price = @product.current_price
-    @orderitem.paid = false
-    @orderitem.dispatched = false
+    @orderitem.quantity = 1
     @orderitem.save
 
     redirect_to products_path
-
   end
 
-  def edit
-  end
-
-  def show
+  def index
   end
 end
