@@ -1,0 +1,12 @@
+<div class="product well">
+  <%= link_to "Details", product_path(product), class: "pull-right" %>
+  <% if product.user == current_user %>
+    <%= link_to "Edit", edit_product_path(product), class: "pull-right" %>
+    <%= link_to "Delete", product_path(product), method: :delete, class: "pull-right" %>
+  <% end %>
+  <%= image_tag(product.image.url, class: 'media-object') %>
+  <h3><%= product.title %></h3>
+  <p>
+    <%= product.description %>
+  </p>
+</div>

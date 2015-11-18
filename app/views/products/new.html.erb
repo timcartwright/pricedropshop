@@ -6,7 +6,7 @@
         <%= simple_form_for @product, html: {class: "well"} do |f| %>
           <%= f.input :title %>
           <%= f.input :description %>
-          <%= f.input :image %>
+          <%= f.input :image, as: :file %>
           <%= f.input :quantity %>
           <%= f.input :min_price %>
           <%= f.input :max_price %>
