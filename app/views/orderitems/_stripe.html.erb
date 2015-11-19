@@ -8,6 +8,9 @@
     <label class="amount">
       <span>Amount to Pay: <%= "#{number_to_currency(@ordertotal, locale: :en)}" %></span>
     </label>
+    <p>
+      <%= link_to "Continue Shopping", products_path %>
+    </p>
   </article>
 
   <%= hidden_field_tag(:amount, @ordertotal * 100) %>
