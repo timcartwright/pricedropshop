@@ -1,15 +1,5 @@
 class OrdersController < ApplicationController
   def index
-  end
-
-  def create
-    
-
-  end
-
-  def edit
-  end
-
-  def show
+    @orders = current_user.orders.where(paid: true)
   end
 end
