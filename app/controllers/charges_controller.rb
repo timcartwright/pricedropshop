@@ -16,17 +16,33 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
     
-    @order = Order.find(params[:orderid])
+    order_id = params[:orderid];
+    @order = Order.find(order_id)
     @order.paid = true
     @order.save!
 
+    update_prices(order_id)
+
     flash[:notice] = 'Your Payment was Successful - Thank you!'
-    redirect_to orderitems_path
+    redirect_to products_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
 
   end
 
+private
+  
+  def update_prices(order_id)
+
+    price_increase_factor = 1.1
+
+    orderitems = Orderitem.where(order_id: order_id)
+
+    orderitems.each do |item|
+      item.product.current_price *= price_increase_factor
+      item.product.save!
+    end
+  end
 
 end
