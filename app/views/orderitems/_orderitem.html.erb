@@ -1,6 +1,7 @@
 
 <tr>
   <td><%= orderitem.product.title %></td>
-  <td><%= orderitem.quantity %></td>
-  <td><%= "#{number_to_currency(orderitem.price, locale: :en)}" %></td>
+  <td class="text-center"><%= orderitem.quantity %></td>
+  <td class="text-center"><%= "#{number_to_currency(orderitem.price, locale: :en)}" %></td>
+  <td class="text-center"><%= link_to "x", orderitem_path(orderitem), method: :delete %></td></td>
 </tr>

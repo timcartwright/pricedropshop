@@ -24,4 +24,11 @@ class OrderitemsController < ApplicationController
     @order = current_user.orders.find_by(paid: false, dispatched: false)
     @orderitems = @order.orderitems
   end
+
+  def destroy
+    # debugger
+    @orderitem = Orderitem.find(params[:id])
+    @orderitem.destroy
+    redirect_to orderitems_path
+  end
 end
