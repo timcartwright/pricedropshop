@@ -1,0 +1,20 @@
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount to Pay: <%= "#{number_to_currency(@ordertotal, locale: :en)}" %></span>
+    </label>
+  </article>
+
+  <%= hidden_field_tag(:amount, @ordertotal * 100) %>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Test Purchase"
+          data-amount= <%= @ordertotal * 100 %>
+          data-locale="auto"></script>
+<% end %>

@@ -4,12 +4,23 @@
     <div class="col-md-6 col-md-offset-3">
       <% if @orderitems.any? %>
         <table class="table table-striped">
-          <th>Product</th>
-          <th class="text-center">Quantity</th>
-          <th class="text-center">Price</th>
-          <th></th>
+          <tr>
+            <th>Product</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Price</th>
+            <th></th>
+          </tr>
           <%= render @orderitems %>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td></td>
+            <td class="text-center"><strong><%= "#{number_to_currency(@ordertotal, locale: :en)}" %></strong></td>
+            <td></td>
+          </tr>
         </table>
+        <div>
+          <%= render "stripe" %>
+        </div>
       <% else %>
         <div class="well">
           Your basket is empty

@@ -23,6 +23,12 @@ class OrderitemsController < ApplicationController
   def index
     @order = current_user.orders.find_by(paid: false, dispatched: false)
     @orderitems = @order.orderitems
+
+    @ordertotal = 0
+    @orderitems.each do |item|
+      @ordertotal += item.price
+    end
+    
   end
 
   def destroy

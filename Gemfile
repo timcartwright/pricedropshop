@@ -49,6 +49,7 @@ group :development do
   gem 'devise'
   gem "paperclip", "~> 4.3"
   gem 'simple_form'
+  gem 'stripe'
 
 end
 
