@@ -1,7 +1,5 @@
 class ChargesController < ApplicationController
-  def new
-  end
-
+  
   def create
     # debugger
     @amount = params[:amount].to_i
@@ -17,9 +15,18 @@ class ChargesController < ApplicationController
       :description => 'Rails Test Customer',
       :currency    => 'usd'
     )
+    
+    @order = Order.find(params[:orderid])
+    @order.paid = true
+    @order.save!
+
+    flash[:notice] = 'Your Payment was Successful - Thank you!'
+    redirect_to orderitems_path
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+
   end
+
+
 end

@@ -21,14 +21,16 @@ class OrderitemsController < ApplicationController
   end
 
   def index
-    @order = current_user.orders.find_by(paid: false, dispatched: false)
-    @orderitems = @order.orderitems
+    @order = current_user.orders.find_by(paid: false)
 
-    @ordertotal = 0
-    @orderitems.each do |item|
-      @ordertotal += item.price
+    if @order
+      @orderitems = @order.orderitems
+      @ordertotal = 0
+      @orderitems.each do |item|
+        @ordertotal += item.price
+      end
     end
-    
+
   end
 
   def destroy
