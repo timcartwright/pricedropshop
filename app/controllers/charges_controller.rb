@@ -35,7 +35,7 @@ private
   
   def update_prices(order_id)
 
-    price_increase_factor = 1.1
+    price_increase_factor = 1.01
 
     orderitems = Orderitem.where(order_id: order_id)
 

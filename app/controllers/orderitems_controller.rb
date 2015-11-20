@@ -1,6 +1,5 @@
 class OrderitemsController < ApplicationController
   def create
-    # debugger
     
     @order = current_user.orders.find_by(paid: false, dispatched: false) || current_user.orders.new
 
@@ -34,7 +33,6 @@ class OrderitemsController < ApplicationController
   end
 
   def destroy
-    # debugger
     @orderitem = Orderitem.find(params[:id])
     @orderitem.destroy
     redirect_to orderitems_path
