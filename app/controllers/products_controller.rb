@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
-  skip_before_filter :authenticate_user!, only: :index
+  skip_before_filter :authenticate_user!, only: [:index, :show]
+  before_filter :find_product, only: [:show, :edit, :destroy]
 
   def index
     @products = Product.all
@@ -11,23 +12,22 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = find_product
     @new_orderitem = @product.orderitems.new
   end
 
   def create
     @product = current_user.products.new(product_params)
-    @product.current_price = params[:product][:start_price]
-    @product.save
-    redirect_to products_path
+    if @product.save
+      redirect_to products_path
+    else
+      render :new
+    end
   end
 
   def edit
-    @product = find_product
   end
 
   def destroy
-    @product = find_product
     @product.destroy
     redirect_to products_path
   end
@@ -38,7 +38,7 @@ private
   end
 
   def find_product
-    Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
 end

@@ -1,19 +1,18 @@
 class ChargesController < ApplicationController
   
   def create
-    # debugger
     @amount = params[:amount].to_i
 
     customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :source  => params[:stripeToken]
+      email:  params[:stripeEmail],
+      source: params[:stripeToken]
     )
 
     charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Test Customer',
-      :currency    => 'usd'
+      customer:     customer.id,
+      amount:       @amount,
+      description:  'Rails Test Customer',
+      currency:     'usd'
     )
     
     order_id = params[:orderid];
@@ -35,12 +34,12 @@ private
   
   def update_prices(order_id)
 
-    price_increase_factor = 1.01
+    price_increase_factor = 0.01
 
     orderitems = Orderitem.where(order_id: order_id)
 
     orderitems.each do |item|
-      item.product.current_price *= price_increase_factor
+      item.product.current_price += (item.product.current_price*price_increase_factor*item.quantity)
       item.product.save!
     end
   end

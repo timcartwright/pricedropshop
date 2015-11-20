@@ -49,6 +49,7 @@ group :development do
   gem 'devise'
   gem "paperclip", "~> 4.3"
   gem 'simple_form'
+  gem 'dotenv-rails', :groups => [:development, :test]
   gem 'stripe'
 
 end
