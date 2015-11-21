@@ -15,12 +15,10 @@ class ChargesController < ApplicationController
       currency:     'usd'
     )
     
-    order_id = params[:orderid];
-    @order = Order.find(order_id)
-    @order.paid = true
-    @order.save!
-
-    update_prices(order_id)
+    order_id = params[:orderid]
+    
+    mark_order_as_paid(order_id)
+    update_product_details(order_id)
 
     flash[:notice] = 'Your Payment was Successful - Thank you!'
     redirect_to products_path
@@ -32,16 +30,20 @@ class ChargesController < ApplicationController
 
 private
   
-  def update_prices(order_id)
-
+  def update_product_details(order_id)
     price_increase_factor = 0.01
-
     orderitems = Orderitem.where(order_id: order_id)
 
     orderitems.each do |item|
-      item.product.current_price += (item.product.current_price*price_increase_factor*item.quantity)
-      item.product.save!
+      item.product.update_quantity(item.quantity)
+      item.product.update_last_sold_price(item.price)
     end
+
+  end
+
+  def mark_order_as_paid(order_id)
+    order = Order.find(order_id)
+    order.mark_as_paid
   end
 
 end

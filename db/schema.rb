@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118122608) do
+ActiveRecord::Schema.define(version: 20151121062209) do
 
   create_table "orderitems", force: :cascade do |t|
     t.integer  "product_id"
@@ -41,17 +41,19 @@ ActiveRecord::Schema.define(version: 20151118122608) do
     t.string   "title"
     t.text     "description"
     t.integer  "quantity"
-    t.decimal  "min_price"
-    t.decimal  "max_price"
-    t.decimal  "start_price"
-    t.decimal  "current_price"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.decimal  "last_sold_price",    precision: 6, scale: 2
+    t.datetime "last_sale_time"
+    t.decimal  "min_price",          precision: 6, scale: 2
+    t.decimal  "max_price",          precision: 6, scale: 2
+    t.decimal  "start_price",        precision: 6, scale: 2
+    t.integer  "quantity_sold"
   end
 
   add_index "products", ["user_id"], name: "index_products_on_user_id"

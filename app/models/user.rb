@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     orderitem.product = product
     orderitem.price = product.current_price
     orderitem.quantity = 1
-    orderitem.save
+    orderitem.save!
   end
   
 end

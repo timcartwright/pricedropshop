@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.new(product_params)
+    @product.last_sold_price = params[:start_price]
+    @product.last_sale_time = DateTime.now
     if @product.save
       redirect_to products_path
     else
