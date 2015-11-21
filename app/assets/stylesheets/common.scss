@@ -1,6 +1,21 @@
+h1 {
+  margin-bottom: 36px;
+}
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+
+.product-details {
+  position: relative;
+}
+
+.buy-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
