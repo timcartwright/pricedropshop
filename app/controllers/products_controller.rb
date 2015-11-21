@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   skip_before_filter :authenticate_user!, only: [:index, :show]
-  before_filter :find_product, only: [:show, :edit, :destroy]
+  before_filter :find_product, only: [:show, :edit, :destroy, :update]
 
   def index
     @products = Product.all
@@ -27,6 +27,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @product.update_attributes(product_params)
+    @product.last_sold_price = params[:start_price]
+    @product.last_sale_time = DateTime.now
+    if @product.save
+      redirect_to products_path
+    else
+      render :edit
+    end
   end
 
   def destroy
