@@ -1,4 +1,4 @@
-== README
+== PriceDropShop
 
 Rails shopping app with Stripe payment. Prices vary as a function of demand.
 
