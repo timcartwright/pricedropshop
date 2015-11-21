@@ -1,6 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'nameless-mountain-2920.herokuapp.com' }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
